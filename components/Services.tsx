@@ -179,15 +179,14 @@ export default function Services() {
             Row 1: [01 featured — col span 2] [02]
             Row 2: [03] [04] [05]
         */}
-        <div style={{
+        <div className="grid-cols-1 md:grid-cols-3" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
           gap: 1,
           background: 'rgba(255,255,255,0.07)',
           marginBottom: '2.5rem',
         }}>
-          {/* 01 — featured, spans 2 columns */}
-          <div style={{ gridColumn: 'span 2' }}>
+          {/* 01 — featured, spans 2 columns on desktop */}
+          <div className="col-span-1 md:col-span-2">
             <BentoCard s={services[0]} />
           </div>
 
