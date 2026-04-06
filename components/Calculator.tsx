@@ -122,7 +122,7 @@ export default function Calculator() {
             Orientační výpočet<br />
             <span style={{ color: '#27744E' }}>hypotéky.</span>
           </h2>
-          <p className="reveal" style={{ fontSize: 13, color: 'rgba(11,27,19,0.4)', maxWidth: 260, lineHeight: 1.7, textAlign: 'right' }}>
+          <p className="reveal text-left md:text-right" style={{ fontSize: 13, color: 'rgba(11,27,19,0.4)', maxWidth: 260, lineHeight: 1.7 }}>
             Výsledky jsou orientační. Pro přesnou nabídku ze všech bank mě kontaktujte zdarma.
           </p>
         </div>

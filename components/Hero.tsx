@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { Phone, Mail } from 'lucide-react'
 
 function Counter({ end, suffix, label }: { end: number; suffix: string; label: string }) {
   const [n, setN]   = useState(0)
@@ -52,7 +53,16 @@ export default function Hero() {
     return () => window.removeEventListener('introComplete', onDone)
   }, [])
 
-  const go = (href: string) => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+  // Lock scroll when drawer open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
+  const go = (href: string) => {
+    setMobileOpen(false)
+    setTimeout(() => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' }), 320)
+  }
 
   return (
     <section
@@ -149,53 +159,131 @@ export default function Hero() {
           </div>
 
           {/* Mobile burger */}
-          <button onClick={() => setMobileOpen(!mobileOpen)}
+          <button onClick={() => setMobileOpen(true)}
             className="md:hidden"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', flexDirection: 'column', gap: 5, padding: 4 }}>
-            <span style={{ width: 18, height: 1, background: mobileOpen ? '#4CAF79' : 'rgba(255,255,255,0.6)', display: 'block', transform: mobileOpen ? 'translateY(3px) rotate(45deg)' : 'none', transition: 'all 0.25s' }} />
-            <span style={{ width: 18, height: 1, background: 'rgba(255,255,255,0.6)', display: 'block', opacity: mobileOpen ? 0 : 1, transition: 'opacity 0.2s' }} />
-            <span style={{ width: 18, height: 1, background: mobileOpen ? '#4CAF79' : 'rgba(255,255,255,0.6)', display: 'block', transform: mobileOpen ? 'translateY(-3px) rotate(-45deg)' : 'none', transition: 'all 0.25s' }} />
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <span style={{ width: 20, height: 1.5, background: 'rgba(255,255,255,0.7)', display: 'block', borderRadius: 1 }} />
+            <span style={{ width: 14, height: 1.5, background: 'rgba(255,255,255,0.7)', display: 'block', borderRadius: 1 }} />
           </button>
         </div>
       </nav>
 
-      {/* Mobile overlay */}
+      {/* Mobile drawer — identical to Navbar */}
       <div className="md:hidden" style={{
-        position: 'fixed', inset: 0, zIndex: 40,
-        background: '#091510',
-        opacity: mobileOpen ? 1 : 0,
-        transform: mobileOpen ? 'none' : 'translateY(-6px)',
+        position: 'fixed', inset: 0, zIndex: 60,
         pointerEvents: mobileOpen ? 'auto' : 'none',
-        transition: 'opacity 0.3s ease, transform 0.3s ease',
       }}>
+        {/* Backdrop */}
+        <div
+          onClick={() => setMobileOpen(false)}
+          style={{
+            position: 'absolute', inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(4px)',
+            opacity: mobileOpen ? 1 : 0,
+            transition: 'opacity 0.35s ease',
+          }}
+        />
+        {/* Drawer panel */}
         <div style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          backgroundImage: 'radial-gradient(circle, rgba(76,175,121,0.1) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-        }} />
-        <div style={{
-          position: 'relative', zIndex: 1,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          height: '100%', gap: 4,
+          position: 'absolute', top: 0, right: 0, bottom: 0,
+          width: '82%', maxWidth: 340,
+          background: '#091510',
+          transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+          display: 'flex', flexDirection: 'column',
+          borderLeft: '1px solid rgba(76,175,121,0.1)',
         }}>
-          <div style={{ marginBottom: 32, opacity: mobileOpen ? 0.5 : 0, transition: 'opacity 0.4s ease 0.1s' }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4CAF79', display: 'block' }} />
-          </div>
-          {[['O mně','#o-mne'],['Služby','#sluzby'],['Kalkulačka','#kalkulacka'],['Kontakt','#kontakt']].map(([label, href], i) => (
-            <button key={href} onClick={() => { setMobileOpen(false); go(href) }}
+          {/* Dot grid */}
+          <div style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            backgroundImage: 'radial-gradient(circle, rgba(76,175,121,0.08) 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }} />
+          {/* Top bar */}
+          <div style={{
+            position: 'relative', zIndex: 1,
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '1.25rem 1.5rem',
+            borderBottom: '1px solid rgba(255,255,255,0.05)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4CAF79', display: 'block' }} />
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>
+                Vladimír Fořt
+              </span>
+            </div>
+            <button
+              onClick={() => setMobileOpen(false)}
               style={{
-                fontSize: 22, fontWeight: 300, letterSpacing: '0.02em',
-                color: 'rgba(255,255,255,0.5)', background: 'none', border: 'none', cursor: 'pointer',
-                padding: '10px 32px',
-                opacity: mobileOpen ? 1 : 0,
-                transform: mobileOpen ? 'none' : 'translateY(10px)',
-                transition: `opacity 0.4s ease ${0.15 + i * 0.06}s, transform 0.4s ease ${0.15 + i * 0.06}s, color 0.2s`,
+                width: 34, height: 34,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderRadius: '50%',
+                cursor: 'pointer', color: 'rgba(255,255,255,0.6)',
+                fontSize: 18, lineHeight: 1,
+                transition: 'background 0.2s, color 0.2s',
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}>
-              {label}
+              onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = 'rgba(76,175,121,0.15)'; b.style.color = '#4CAF79' }}
+              onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = 'rgba(255,255,255,0.05)'; b.style.color = 'rgba(255,255,255,0.6)' }}>
+              ✕
             </button>
-          ))}
+          </div>
+          {/* Nav links */}
+          <nav style={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 1.5rem' }}>
+            {[['O mně','#o-mne'],['Služby','#sluzby'],['Kalkulačka','#kalkulacka'],['Kontakt','#kontakt']].map(([label, href], i) => (
+              <button key={href} onClick={() => go(href)}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '1.1rem 0',
+                  background: 'none', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)',
+                  cursor: 'pointer', textAlign: 'left', width: '100%',
+                  opacity: mobileOpen ? 1 : 0,
+                  transform: mobileOpen ? 'none' : 'translateX(20px)',
+                  transition: `opacity 0.4s ease ${0.1 + i * 0.06}s, transform 0.4s ease ${0.1 + i * 0.06}s`,
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLButtonElement
+                  el.querySelector('.hl')?.setAttribute('style', 'font-size:22px;font-weight:300;color:#fff;letter-spacing:0.01em;transition:all 0.2s')
+                  el.querySelector('.ha')?.setAttribute('style', 'color:#4CAF79;transform:translateX(4px);transition:all 0.2s')
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLButtonElement
+                  el.querySelector('.hl')?.setAttribute('style', 'font-size:22px;font-weight:300;color:rgba(255,255,255,0.55);letter-spacing:0.01em;transition:all 0.2s')
+                  el.querySelector('.ha')?.setAttribute('style', 'color:rgba(255,255,255,0.2);transform:none;transition:all 0.2s')
+                }}>
+                <span className="hl" style={{ fontSize: 22, fontWeight: 300, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.01em', transition: 'all 0.2s' }}>
+                  {label}
+                </span>
+                <span className="ha" style={{ color: 'rgba(255,255,255,0.2)', fontSize: 16, transition: 'all 0.2s' }}>→</span>
+              </button>
+            ))}
+          </nav>
+          {/* Bottom contacts */}
+          <div style={{
+            position: 'relative', zIndex: 1,
+            padding: '1.5rem',
+            borderTop: '1px solid rgba(255,255,255,0.05)',
+            opacity: mobileOpen ? 1 : 0,
+            transition: 'opacity 0.4s ease 0.4s',
+          }}>
+            <p style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.22em', color: 'rgba(76,175,121,0.5)', marginBottom: '0.75rem' }}>
+              Kontakt
+            </p>
+            <a href="tel:+420773606013" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0.5rem 0', textDecoration: 'none' }}>
+              <div style={{ width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(76,175,121,0.2)', flexShrink: 0 }}>
+                <Phone style={{ width: 12, height: 12, color: '#4CAF79' }} />
+              </div>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>773 60 60 13</span>
+            </a>
+            <a href="mailto:vladimir.fort@bidli.cz" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0.5rem 0', textDecoration: 'none' }}>
+              <div style={{ width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(76,175,121,0.2)', flexShrink: 0 }}>
+                <Mail style={{ width: 12, height: 12, color: '#4CAF79' }} />
+              </div>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>vladimir.fort@bidli.cz</span>
+            </a>
+          </div>
         </div>
       </div>
 

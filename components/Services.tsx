@@ -52,13 +52,12 @@ function BentoCard({ s }: { s: typeof services[0] }) {
 
   return (
     <div
-      className="reveal"
+      className="reveal px-4 py-7 md:p-8"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => document.querySelector('#kontakt')?.scrollIntoView({ behavior: 'smooth' })}
       style={{
         position: 'relative',
-        padding: '2rem',
         background: hovered ? 'rgba(76,175,121,0.04)' : '#0B1B13',
         cursor: 'pointer',
         transition: 'background 0.3s',
@@ -169,7 +168,7 @@ export default function Services() {
               Vše pod jednou<br />
               <span style={{ color: '#4CAF79' }}>střechou.</span>
             </h2>
-            <p className="reveal" style={{ fontSize: 13, color: 'rgba(255,255,255,0.32)', maxWidth: 260, lineHeight: 1.7, textAlign: 'right' }}>
+            <p className="reveal text-left md:text-right" style={{ fontSize: 13, color: 'rgba(255,255,255,0.32)', maxWidth: 260, lineHeight: 1.7 }}>
               Komplexní poradenství od jednoho specialisty. Jeden hovor stačí.
             </p>
           </div>
