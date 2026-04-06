@@ -163,7 +163,6 @@ export default function Navbar() {
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   padding: '1.1rem 0',
-                  borderBottom: '1px solid rgba(255,255,255,0.05)',
                   background: 'none', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)',
                   cursor: 'pointer', textAlign: 'left', width: '100%',
                   opacity: mobileOpen ? 1 : 0,
