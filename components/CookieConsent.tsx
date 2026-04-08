@@ -43,6 +43,16 @@ export default function CookieConsent() {
     }
   }, [])
 
+  // Listen for footer "open cookie settings" trigger
+  useEffect(() => {
+    const handler = () => {
+      setShowSettings(true)
+      setVisible(true)
+    }
+    window.addEventListener('openCookieSettings', handler)
+    return () => window.removeEventListener('openCookieSettings', handler)
+  }, [])
+
   const save = (all: boolean) => {
     const saved: Prefs = all ? { analytics: true, marketing: true } : prefs
     localStorage.setItem(STORAGE_KEY, JSON.stringify(saved))

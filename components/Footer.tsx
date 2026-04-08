@@ -88,6 +88,15 @@ export default function Footer() {
                   Ochrana osobních údajů
                 </Link>
               </li>
+              <li>
+                <button
+                  onClick={() => window.dispatchEvent(new Event('openCookieSettings'))}
+                  style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, transition: 'color 0.2s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}>
+                  Nastavení cookies
+                </button>
+              </li>
             </ul>
             <div style={{ padding: '0.75rem', border: '1px solid rgba(255,255,255,0.05)' }}>
               <p style={{ fontSize: 11, lineHeight: 1.6, color: 'rgba(255,255,255,0.2)' }}>
