@@ -72,7 +72,7 @@ export default function About() {
               Věřím, že žádný dotaz není špatný a každý si zaslouží srozumitelné vysvětlení.
             </p>
             <p className="reveal" style={{ color: '#64748b', lineHeight: 1.8, maxWidth: 500, marginBottom: '3rem' }}>
-              Díky dlouholeté praxi dokáži porovnat nabídky z více než 20 bank a pojišťoven
+              Díky dlouholeté praxi dokáži porovnat nabídky z většiny bank a pojišťoven
               a najít pro vás to nejlepší řešení.
             </p>
 
@@ -146,7 +146,7 @@ export default function About() {
               {[
                 { value: '14+', label: 'Let praxe' },
                 { value: '100+', label: 'Klientů' },
-                { value: '20+', label: 'Bank' },
+                { value: '100%', label: 'Bezplatně' },
               ].map((s, i) => (
                 <div key={i} style={{
                   padding: '1.25rem 0.75rem',

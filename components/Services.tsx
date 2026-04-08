@@ -8,7 +8,7 @@ const services = [
     num: '01',
     icon: Home,
     title: 'Hypotéky',
-    desc: 'Srovnám pro vás nabídky z více než 20 bank. Hypotéka na bydlení, refinancování, investiční hypotéka — vše vyřídím od A do Z.',
+    desc: 'Srovnám pro vás nabídky z většiny českých bank. Hypotéka na bydlení, refinancování, investiční hypotéka — vše vyřídím od A do Z.',
     tag: 'Financování',
     featured: true,
   },

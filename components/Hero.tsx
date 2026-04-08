@@ -161,7 +161,7 @@ export default function Hero() {
           {/* Mobile burger */}
           <button onClick={() => setMobileOpen(true)}
             className="md:hidden"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, flexDirection: 'column', gap: 5 }}>
             <span style={{ width: 20, height: 1.5, background: 'rgba(255,255,255,0.7)', display: 'block', borderRadius: 1 }} />
             <span style={{ width: 14, height: 1.5, background: 'rgba(255,255,255,0.7)', display: 'block', borderRadius: 1 }} />
           </button>
@@ -379,7 +379,7 @@ export default function Hero() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, maxWidth: 480 }}>
               {[
                 { end: 14, suffix: '+', label: 'Let praxe' },
-                { end: 20, suffix: '+', label: 'Bank na trhu' },
+                { end: 100, suffix: '%', label: 'Bezplatný servis' },
                 { end: 100, suffix: '+', label: 'Spokojených klientů' },
               ].map((s, i) => (
                 <div key={i} style={{
