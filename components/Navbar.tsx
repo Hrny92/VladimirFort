@@ -76,6 +76,17 @@ export default function Navbar() {
                 onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.borderColor = 'rgba(76,175,121,0.3)'; b.style.background = 'none' }}>
                 Kontakt →
               </button>
+              {process.env.NEXT_PUBLIC_BOOKING_URL && (
+                <a
+                  href={process.env.NEXT_PUBLIC_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#0B1B13', background: '#4CAF79', padding: '7px 18px', textDecoration: 'none', whiteSpace: 'nowrap', transition: 'background 0.2s' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#5DC98A' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#4CAF79' }}>
+                  Rezervovat schůzku
+                </a>
+              )}
             </div>
 
             {/* Mobile burger */}
