@@ -157,7 +157,7 @@ export default function Contact() {
             letterSpacing: '-0.06em', lineHeight: 1,
             fontFamily: 'Inter, system-ui, sans-serif',
             paddingLeft: '2%',
-          }}>05</span>
+          }}>04</span>
         </div>
 
         <div className="max-w-6xl mx-auto px-6 lg:px-16" style={{ position: 'relative', zIndex: 1 }}>
@@ -214,6 +214,34 @@ export default function Contact() {
                   </a>
                 ))}
               </div>
+
+              {/* Booking button */}
+              {process.env.NEXT_PUBLIC_BOOKING_URL && (
+                <div className="reveal" style={{ marginTop: '2rem' }}>
+                  <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)', marginBottom: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.16em', fontWeight: 700 }}>
+                    Nebo si rovnou vyberte termín
+                  </p>
+                  <a
+                    href={process.env.NEXT_PUBLIC_BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 10,
+                      padding: '13px 24px',
+                      border: '1px solid rgba(76,175,121,0.3)',
+                      color: '#4CAF79',
+                      fontSize: 11, fontWeight: 700,
+                      textTransform: 'uppercase', letterSpacing: '0.14em',
+                      textDecoration: 'none',
+                      transition: 'border-color 0.2s, background 0.2s',
+                    }}
+                    onMouseEnter={e => { const a = e.currentTarget as HTMLAnchorElement; a.style.borderColor = 'rgba(76,175,121,0.6)'; a.style.background = 'rgba(76,175,121,0.06)' }}
+                    onMouseLeave={e => { const a = e.currentTarget as HTMLAnchorElement; a.style.borderColor = 'rgba(76,175,121,0.3)'; a.style.background = 'transparent' }}>
+                    <ArrowRight style={{ width: 14, height: 14 }} />
+                    Rezervuj si schůzku
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Right — form */}
