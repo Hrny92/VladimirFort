@@ -92,7 +92,7 @@ export default function Navbar() {
             {/* Mobile burger */}
             <button onClick={() => setMobileOpen(true)}
               className="md:hidden"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, flexDirection: 'column', gap: 5 }}>
               <span style={{ width: 20, height: 1.5, background: 'rgba(255,255,255,0.7)', display: 'block', borderRadius: 1 }} />
               <span style={{ width: 14, height: 1.5, background: 'rgba(255,255,255,0.7)', display: 'block', borderRadius: 1 }} />
             </button>
