@@ -157,7 +157,7 @@ export default function Contact() {
             letterSpacing: '-0.06em', lineHeight: 1,
             fontFamily: 'Inter, system-ui, sans-serif',
             paddingLeft: '2%',
-          }}>04</span>
+          }}>05</span>
         </div>
 
         <div className="max-w-6xl mx-auto px-6 lg:px-16" style={{ position: 'relative', zIndex: 1 }}>
