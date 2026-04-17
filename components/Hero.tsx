@@ -301,15 +301,15 @@ export default function Hero() {
       {/* Main content */}
       <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column', pointerEvents: 'none' }}>
         <div className="max-w-6xl mx-auto px-6 lg:px-16"
-          style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: '3rem' }}>
+          style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: 'clamp(1.5rem, 3vh, 3rem)' }}>
 
           {/* Headline block */}
-          <div style={{ maxWidth: 560, marginTop: '10vh' }}>
+          <div style={{ maxWidth: 660, marginTop: 'clamp(2rem, 6vh, 8vh)' }}>
 
             {/* Eyebrow */}
             <div style={{
               display: 'flex', alignItems: 'center', gap: 12,
-              marginBottom: '2.5rem',
+              marginBottom: '1.5rem',
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(8px)',
               transition: 'opacity 0.6s ease, transform 0.6s ease',
             }}>
@@ -323,49 +323,45 @@ export default function Hero() {
 
             {/* H1 */}
             <h1 style={{
-              marginBottom: '2rem',
+              marginBottom: '1.25rem',
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(16px)',
               transition: 'opacity 0.7s ease 0.08s, transform 0.7s ease 0.08s',
             }}>
               <span style={{ display: 'block', color: '#fff' }}>Vaše finance</span>
-              <span style={{ display: 'block' }}>
-                <span style={{ color: 'rgba(255,255,255,0.22)' }}>v dobrých </span>
-                <span style={{ color: '#4CAF79' }}>rukou.</span>
-              </span>
+              <span style={{ display: 'block', color: '#4CAF79' }}>v dobrých rukou.</span>
             </h1>
 
             {/* Perex */}
             <p style={{
-              color: 'rgba(255,255,255,0.38)', lineHeight: 1.75, maxWidth: 400,
-              marginBottom: '2.5rem',
+              color: 'rgba(255,255,255,0.38)', lineHeight: 1.7, maxWidth: 380,
+              marginBottom: '1.75rem',
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(10px)',
               transition: 'opacity 0.6s ease 0.18s, transform 0.6s ease 0.18s',
             }}>
-              Hypotéky, pojištění a financování — komplexní řešení od jednoho specialisty.
-              Trpělivé jednání, jasné vysvětlení.
+              Hypotéky, pojištění, financování — vše pod jednou střechou.
             </p>
 
             {/* CTAs */}
             <div style={{
-              display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap', pointerEvents: 'auto',
+              display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap', pointerEvents: 'auto',
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(8px)',
               transition: 'opacity 0.6s ease 0.26s, transform 0.6s ease 0.26s',
             }}>
-              <button
-                onClick={() => go('#kontakt')}
+              <a
+                href="tel:+420773606013"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 10,
                   background: '#4CAF79', color: '#091510',
                   fontWeight: 800, fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase',
                   padding: '14px 28px',
-                  border: 'none', cursor: 'pointer',
+                  textDecoration: 'none',
                   transition: 'background 0.2s, transform 0.2s',
                 }}
-                onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = '#5DC98A'; b.style.transform = 'translateY(-1px)' }}
-                onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = '#4CAF79'; b.style.transform = 'none' }}>
-                Konzultace zdarma
+                onMouseEnter={e => { const a = e.currentTarget as HTMLAnchorElement; a.style.background = '#5DC98A'; a.style.transform = 'translateY(-1px)' }}
+                onMouseLeave={e => { const a = e.currentTarget as HTMLAnchorElement; a.style.background = '#4CAF79'; a.style.transform = 'none' }}>
+                Zavolej mi — poradím ti
                 <span style={{ fontSize: 14, lineHeight: 1 }}>→</span>
-              </button>
+              </a>
 
               <button
                 onClick={() => go('#kalkulacka')}
@@ -387,10 +383,9 @@ export default function Hero() {
             transition: 'opacity 0.8s ease 0.45s',
           }}>
             <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', marginBottom: 28 }} />
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, maxWidth: 480 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, maxWidth: 780 }}>
               {[
                 { end: 14, suffix: '+', label: 'Let praxe' },
-                { end: 100, suffix: '%', label: 'Bezplatný servis' },
                 { end: 100, suffix: '+', label: 'Spokojených klientů' },
               ].map((s, i) => (
                 <div key={i} style={{
